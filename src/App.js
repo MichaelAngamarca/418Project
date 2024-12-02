@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router";
+import Homepage from "./HomePage/Homepage";
+import Login from "./Login/Login";
+import GeneratePlaylist from "./GeneratePlaylist/GeneratePlaylist";
+import About from "./About/About";
+import Signup from "./Signup/Signup";
+import Spotifylogin from "./SpotifyLogin/Spotifylogin";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/generateplaylist" element={<GeneratePlaylist />} />
+        <Route path="/howtouse" element={<About />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/spotifylogin" element={<Spotifylogin />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
