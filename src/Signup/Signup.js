@@ -12,7 +12,7 @@ const Signup = () => {
   const handleSignUp = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5001/signup", signupValues)
+      .post("http://localhost:5001/usersignup", signupValues)
       .then((res) => {
         alert("Sign-up successful! Redirecting to login...");
         navigate("/login");

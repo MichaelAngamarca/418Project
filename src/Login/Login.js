@@ -14,13 +14,13 @@ const Login = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     axios
-      .post("http://localhost:5001/login", {
+      .post("http://localhost:5001/userlogin", {
         username: loginValues.userID,
         password: loginValues.password,
       })
       .then((res) => {
         alert("Login Successful!");
-        navigate("/spotifylogin");
+        window.location.href = "http://localhost:5001/login";
       })
       .catch((err) => {
         alert(err.response.data.message || "Error In Login");
@@ -83,7 +83,11 @@ const Login = () => {
           <button type="submit" className="btn btn-primary">
             Login
           </button>
-          <button type="button" className="btn btn-secondary" onClick={handleSignup}>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleSignup}
+          >
             Sign Up
           </button>
         </div>
