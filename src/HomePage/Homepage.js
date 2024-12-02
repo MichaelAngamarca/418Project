@@ -28,6 +28,9 @@ const Homepage = () => {
           <a className="nav-item nav-link text-white" href="/login">
             Login
           </a>
+          <a className="nav-item nav-link text-white" href="/signup">
+            Signup
+          </a>
           <a className="nav-item nav-link text-white" href="/howtouse">
             How To Use
           </a>
