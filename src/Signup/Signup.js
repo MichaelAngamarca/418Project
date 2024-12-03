@@ -27,7 +27,9 @@ const Signup = () => {
       [name]: value,
     }));
   };
-
+  const handleLogin = () => {
+    navigate("/login");
+  };
   return (
     <><nav className="navbar navbar-expand-lg navbar-light bg-dark">
       <a className="navbar-brand text-white" href="/public">
@@ -99,9 +101,16 @@ const Signup = () => {
               required />
           </div>
           <div className="d-grid gap-2">
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleLogin}
+          >
+            Login
+          </button>
           </div>
         </form>
       </div></>
