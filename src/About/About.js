@@ -1,4 +1,5 @@
 import React from 'react'
+// Added commment to check commit
 
 const About = () => {
   return (
