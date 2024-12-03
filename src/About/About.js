@@ -20,21 +20,27 @@ const About = () => {
          <span className="navbar-toggler-icon"></span>
        </button>
        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-         <div className="navbar-nav">
-           <a className="nav-item nav-link text-white active" href="/">
-             Home
-           </a>
-           <a className="nav-item nav-link text-white" href="/generateplaylist">
-             Generate A Playlist
-           </a>
-           <a className="nav-item nav-link text-white" href="/login">
-             Login
-           </a>
-           <a className="nav-item nav-link text-white" href="/howtouse">
-             How To Use
-           </a>
-         </div>
-       </div>
+          <div className="navbar-nav">
+            <a className="nav-item nav-link text-white active" href="/">
+              Home
+            </a>
+            <a
+              className="nav-item nav-link text-white"
+              href="/generateplaylist"
+            >
+              Generate A Playlist
+            </a>
+            <a className="nav-item nav-link text-white" href="/login">
+              Login
+            </a>
+            <a className="nav-item nav-link text-white" href="/signup">
+              Signup
+            </a>
+            <a className="nav-item nav-link text-white" href="/howtouse">
+              How To Use
+            </a>
+          </div>
+        </div>
      </nav>
 
 

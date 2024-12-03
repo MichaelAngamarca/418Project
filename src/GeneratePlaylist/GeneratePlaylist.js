@@ -178,69 +178,68 @@ const GeneratePlaylist = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <h1>Generate Playlist</h1>
-      <button className="btn btn-primary mb-4" onClick={handleLogin}>
-        Login With Spotify
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div className="navbar-nav">
-            <a className="nav-item nav-link text-white active" href="/">
-              Home
-            </a>
-            <a
-              className="nav-item nav-link text-white"
-              href="/generateplaylist"
-            >
-              Generate A Playlist
-            </a>
-            <a className="nav-item nav-link text-white" href="/login">
-              Login
-            </a>
-            <a className="nav-item nav-link text-white" href="/signup">
-              Signup
-            </a>
-            <a className="nav-item nav-link text-white" href="/howtouse">
-              How To Use
-            </a>
-          </div>
-        </div>
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Enter Spotify Playlist Link"
-        value={playlistLink}
-        onChange={(e) => setPlaylistLink(e.target.value)}
-      />
-      <button className="btn btn-success" onClick={createNewPlaylist}>
-        Create New Playlist
-      </button>
+    <><div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div className="navbar-nav">
+        <a className="nav-item nav-link text-white active" href="/">
+          Home
+        </a>
+        <a
+          className="nav-item nav-link text-white"
+          href="/generateplaylist"
+        >
+          Generate A Playlist
+        </a>
+        <a className="nav-item nav-link text-white" href="/login">
+          Login
+        </a>
+        <a className="nav-item nav-link text-white" href="/signup">
+          Signup
+        </a>
+        <a className="nav-item nav-link text-white" href="/howtouse">
+          How To Use
+        </a>
+      </div>
+    </div><div className="container mt-5">
+        <h1>Generate Playlist</h1>
+        <button className="btn btn-primary mb-4" onClick={handleLogin}>
+          Login With Spotify
+        </button>
 
-      {playlistDetails && (
-        <div className="card mt-4">
-          <img src={playlistDetails.image} className="card-img-top" alt="Playlist Art" />
-          <div className="card-body">
-            <h5 className="card-title">{playlistDetails.name}</h5>
-            <a href={playlistDetails.link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
-              Open Playlist on Spotify
-            </a>
-          </div>
-        </div>
-      )}
+        <input
+          type="text"
+          className="form-control mb-3"
+          placeholder="Enter Spotify Playlist Link"
+          value={playlistLink}
+          onChange={(e) => setPlaylistLink(e.target.value)} />
+        <button className="btn btn-success" onClick={createNewPlaylist}>
+          Create New Playlist
+        </button>
 
-      {filteredTracks.length > 0 && (
-        <div className="mt-4">
-          <h2>New Tracks Based on Genres</h2>
-          <ul className="list-group">
-            {filteredTracks.map((track) => (
-              <li key={track.uri} className="list-group-item">
-                {track.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+        {playlistDetails && (
+          <div className="card mt-4">
+            <img src={playlistDetails.image} className="card-img-top" alt="Playlist Art" />
+            <div className="card-body">
+              <h5 className="card-title">{playlistDetails.name}</h5>
+              <a href={playlistDetails.link} className="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                Open Playlist on Spotify
+              </a>
+            </div>
+          </div>
+        )}
+
+        {filteredTracks.length > 0 && (
+          <div className="mt-4">
+            <h2>New Tracks Based on Genres</h2>
+            <ul className="list-group">
+              {filteredTracks.map((track) => (
+                <li key={track.uri} className="list-group-item">
+                  {track.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div></>
   );
 };
 
