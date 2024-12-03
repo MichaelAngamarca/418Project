@@ -14,7 +14,6 @@ const SCOPES_URL_PARAM = SCOPES.join("%20");
 
 const GeneratePlaylist = () => {
   const [playlistLink, setPlaylistLink] = useState("");
-  const [targetGenres, setTargetGenres] = useState("");
   const [filteredTracks, setFilteredTracks] = useState([]);
   const [playlistDetails, setPlaylistDetails] = useState(null);
 
@@ -46,8 +45,8 @@ const GeneratePlaylist = () => {
     const accessToken = localStorage.getItem("accessToken");
     const playlistId = extractPlaylistId(playlistLink);
 
-    if (!accessToken || !playlistId || !targetGenres) {
-      alert("Please login, provide a valid playlist link, and enter genres.");
+    if (!accessToken || !playlistId) {
+      alert("Please login and provide a valid playlist link.");
       return;
     }
 
@@ -76,21 +75,48 @@ const GeneratePlaylist = () => {
         )
       );
 
-      // Filter tracks by target genres
-      const filtered = tracks.filter((track, i) =>
-        artistGenres[i].genres.some((genre) =>
-          targetGenres.split(",").map((g) => g.trim().toLowerCase()).includes(genre.toLowerCase())
+      // Extract all genres from the artists
+      const allGenres = artistGenres
+        .flatMap((artist) => artist.genres)
+        .reduce((acc, genre) => {
+          acc[genre] = (acc[genre] || 0) + 1;
+          return acc;
+        }, {});
+
+      // Sort genres by frequency and pick top genres
+      const sortedGenres = Object.entries(allGenres)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5); // Top 5 genres
+      const topGenres = sortedGenres.map(([genre]) => genre);
+
+      // Search for new tracks based on top genres
+      const genreSearchResults = await Promise.all(
+        topGenres.map((genre) =>
+          fetch(
+            `https://api.spotify.com/v1/search?q=genre:${genre}&type=track&limit=5`,
+            {
+              headers: { Authorization: `Bearer ${accessToken}` },
+            }
+          ).then((res) => res.json())
         )
       );
 
-      if (filtered.length === 0) {
-        alert("No tracks match the specified genres.");
+      // Flatten the results and collect track URIs
+      const newTracks = genreSearchResults.flatMap((result) =>
+        result.tracks.items.map((track) => ({
+          name: track.name,
+          uri: track.uri,
+        }))
+      );
+
+      if (newTracks.length === 0) {
+        alert("No tracks found for the selected genres.");
         return;
       }
 
-      setFilteredTracks(filtered);
+      setFilteredTracks(newTracks);
 
-      // Create new playlist
+      // Create a new playlist for the user
       const userIdResponse = await fetch("https://api.spotify.com/v1/me", {
         headers: { Authorization: `Bearer ${accessToken}` },
       });
@@ -106,7 +132,7 @@ const GeneratePlaylist = () => {
           },
           body: JSON.stringify({
             name: "Generated Playlist",
-            description: "Playlist generated based on similar genres",
+            description: "Playlist generated based on most prominent genres",
             public: false,
           }),
         }
@@ -114,7 +140,7 @@ const GeneratePlaylist = () => {
 
       const playlistData = await createPlaylistResponse.json();
 
-      // Add tracks to the new playlist
+      // Add new tracks to the new playlist
       await fetch(
         `https://api.spotify.com/v1/playlists/${playlistData.id}/tracks`,
         {
@@ -124,7 +150,7 @@ const GeneratePlaylist = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            uris: filtered.map((track) => track.uri),
+            uris: newTracks.map((track) => track.uri),
           }),
         }
       );
@@ -164,13 +190,6 @@ const GeneratePlaylist = () => {
         value={playlistLink}
         onChange={(e) => setPlaylistLink(e.target.value)}
       />
-      <input
-        type="text"
-        className="form-control mb-3"
-        placeholder="Enter Target Genres (comma-separated)"
-        value={targetGenres}
-        onChange={(e) => setTargetGenres(e.target.value)}
-      />
       <button className="btn btn-success" onClick={createNewPlaylist}>
         Create New Playlist
       </button>
@@ -189,7 +208,7 @@ const GeneratePlaylist = () => {
 
       {filteredTracks.length > 0 && (
         <div className="mt-4">
-          <h2>Filtered Tracks</h2>
+          <h2>New Tracks Based on Genres</h2>
           <ul className="list-group">
             {filteredTracks.map((track) => (
               <li key={track.uri} className="list-group-item">
