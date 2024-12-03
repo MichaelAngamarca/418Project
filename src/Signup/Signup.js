@@ -100,7 +100,7 @@ const Signup = () => {
               onChange={handleInputChange}
               required />
           </div>
-          <div className="d-grid gap-2">
+          <div className="d-flex justify-content-between">
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
