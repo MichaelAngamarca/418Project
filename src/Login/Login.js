@@ -20,7 +20,6 @@ const Login = () => {
       })
       .then((res) => {
         alert("Login Successful!");
-        window.location.href = "http://localhost:5001/login";
       })
       .catch((err) => {
         alert(err.response.data.message || "Error In Login");
@@ -42,41 +41,46 @@ const Login = () => {
   };
 
   return (
-    <><nav className="navbar navbar-expand-lg navbar-light bg-dark">
-      <a className="navbar-brand text-white" href="/public">
-        Spotify Playlist Maker
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <a className="nav-item nav-link text-white active" href="/">
-            Home
-          </a>
-          <a className="nav-item nav-link text-white" href="/generateplaylist">
-            Generate A Playlist
-          </a>
-          <a className="nav-item nav-link text-white" href="/login">
-            Login
-          </a>
-          <a className="nav-item nav-link text-white" href="/signup">
-            Signup
-          </a>
-          <a className="nav-item nav-link text-white" href="/howtouse">
-            How To Use
-          </a>
+    <>
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <a className="navbar-brand text-white" href="/public">
+          Spotify Playlist Maker
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-item nav-link text-white active" href="/">
+              Home
+            </a>
+            <a
+              className="nav-item nav-link text-white"
+              href="/generateplaylist"
+            >
+              Generate A Playlist
+            </a>
+            <a className="nav-item nav-link text-white" href="/login">
+              Login
+            </a>
+            <a className="nav-item nav-link text-white" href="/signup">
+              Signup
+            </a>
+            <a className="nav-item nav-link text-white" href="/howtouse">
+              How To Use
+            </a>
+          </div>
         </div>
-      </div>
-    </nav><div className="container d-flex justify-content-center align-items-center vh-100">
+      </nav>
+      <div className="container d-flex justify-content-center align-items-center vh-100">
         <form
           className="p-4 bg-light rounded shadow"
           style={{ maxWidth: "400px", width: "100%" }}
@@ -95,7 +99,8 @@ const Login = () => {
               value={loginValues.userID} // Bind to state
               onChange={handleInputChange} // Handle changes
               placeholder="Enter your username"
-              required />
+              required
+            />
           </div>
           <div className="mb-3">
             <label htmlFor="password" className="form-label">
@@ -109,7 +114,8 @@ const Login = () => {
               value={loginValues.password} // Bind to state
               onChange={handleInputChange} // Handle changes
               placeholder="Enter your password"
-              required />
+              required
+            />
           </div>
           <div className="d-flex justify-content-between">
             <button type="submit" className="btn btn-primary">
@@ -124,7 +130,8 @@ const Login = () => {
             </button>
           </div>
         </form>
-      </div></>
+      </div>
+    </>
   );
 };
 

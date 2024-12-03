@@ -7,17 +7,6 @@ import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import querystring from "querystring";
 
-function generateRandomString(length) {
-  let text = "";
-  const possible =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (let i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-}
-
 const UserSchema = new mongoose.Schema({
   userName: String,
   password: String,
@@ -114,69 +103,6 @@ app.post("/userlogin", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal server error" });
-  }
-});
-
-//For Spotify API Authroization
-app.get("/login", function (req, res) {
-  const state = generateRandomString(16);
-  const scope = "user-read-private user-read-email";
-  res.redirect(
-    "https://accounts.spotify.com/authorize?" +
-      querystring.stringify({
-        response_type: "code", 
-        client_id: client_id,
-        scope: scope,
-        redirect_uri: redirect_uri,
-        state: state,
-      })
-  );
-});
-
-app.get("/callback", async (req, res) => {
-  const code = req.query.code || null;
-  const state = req.query.state || null;
-
-  if (!state) {
-    return res.redirect(
-      "/#" +
-        queryString.stringify({
-          error: "state_mismatch",
-        })
-    );
-  }
-
-  try {
-    const authOptions = {
-      url: "https://accounts.spotify.com/api/token",
-      method: "post",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Authorization: `Basic ${Buffer.from(
-          client_id + ":" + client_secret
-        ).toString("base64")}`,
-      },
-      data: new URLSearchParams({
-        code: code,
-        redirect_uri: redirect_uri,
-        grant_type: "authorization_code",
-      }),
-    };
-
-    const response = await axios(authOptions);
-    const { access_token, refresh_token } = response.data;
-
-    // Redirect or send a response with the tokens
-    res.redirect(
-      "/#" +
-        queryString.stringify({
-          access_token: access_token,
-          refresh_token: refresh_token,
-        })
-    );
-  } catch (error) {
-    console.error("Error during Spotify authorization callback:", error);
-    res.status(500).send("Internal Server Error");
   }
 });
 
