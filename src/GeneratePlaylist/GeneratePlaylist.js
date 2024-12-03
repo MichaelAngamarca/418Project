@@ -183,6 +183,28 @@ const GeneratePlaylist = () => {
       <button className="btn btn-primary mb-4" onClick={handleLogin}>
         Login With Spotify
       </button>
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-item nav-link text-white active" href="/">
+              Home
+            </a>
+            <a
+              className="nav-item nav-link text-white"
+              href="/generateplaylist"
+            >
+              Generate A Playlist
+            </a>
+            <a className="nav-item nav-link text-white" href="/login">
+              Login
+            </a>
+            <a className="nav-item nav-link text-white" href="/signup">
+              Signup
+            </a>
+            <a className="nav-item nav-link text-white" href="/howtouse">
+              How To Use
+            </a>
+          </div>
+        </div>
       <input
         type="text"
         className="form-control mb-3"
