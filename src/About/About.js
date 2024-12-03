@@ -42,7 +42,7 @@ const About = () => {
      <h1 className="text-center mb-4">About Music Recommender</h1>
      <p className="text-center">
        Our Muisc Recommender is a web application designed to recommend music to listensers based on
-       their mood. Whether you're a listener or a musician loooking to share your work, this platform has something for you.
+       their mood. Whether you're a listener or a musician looking to share your work, this platform has something for you.
      </p>
      <div className="mt-4">
        <h2>Features</h2>
