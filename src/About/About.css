@@ -1,4 +1,4 @@
-.card {
+.cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -9,7 +9,7 @@
     text-align: center;
     margin: 20px;
     padding: 20px;
-    width: 250px;
+    width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #ffffff;
     border: 1px solid #e0e0e0;

@@ -1,6 +1,7 @@
 import React from 'react'
 import "./About.css";
 import ayanCooper from '../assets/images/ayan_cooper.JPG';
+import placeHolder from '../assets/images/placeHolder418.jpg';
 
 const About = () => {
   return (
@@ -75,11 +76,35 @@ const About = () => {
      </div>
    </div> 
 
-    <div className="cards-containter">
+    <div className="cards-container">
       <div className="card">
         <img src={ayanCooper} alt="Ayan Cooper" />
         <h3>Ayan Cooper</h3>
         <p>Frontend Developer</p>
+      </div>
+
+      <div className="card">
+        <img src={placeHolder} alt="Renald Mendez" />
+        <h3>Renald Mendez</h3>
+        <p>Frontend Developer</p>
+      </div>
+
+      <div className="card">
+        <img src={placeHolder} alt="Samuel Zhao" />
+        <h3>Samuel Zhao</h3>
+        <p>Frontend Developer</p>
+      </div>
+
+      <div className="card">
+        <img src={placeHolder} alt="Eli Pardo" />
+        <h3>Eli Pardo</h3>
+        <p>Frontend Developer</p>
+      </div>
+
+      <div className="card">
+        <img src={placeHolder} alt="Miguel Angamarca" />
+        <h3>Miguel Angamarca</h3>
+        <p>Backend Developer</p>
       </div>
     </div>
 
