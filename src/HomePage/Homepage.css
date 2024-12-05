@@ -217,7 +217,7 @@ body {
 
 .hero {
   padding: 50px 20px;
-  background: linear-gradient(135deg, #89c0d2, #121212);
+  background: linear-gradient(135deg, #89c0d2, #333333);
 }
 
 .hero-title {
