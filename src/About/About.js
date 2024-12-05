@@ -1,5 +1,6 @@
 import React from 'react'
-// Added commment to check commit
+import "./About.css";
+import ayanCooper from '../assets/images/ayan_cooper.JPG';
 
 const About = () => {
   return (
@@ -73,6 +74,15 @@ const About = () => {
        </p>
      </div>
    </div> 
+
+    <div className="cards-containter">
+      <div className="card">
+        <img src={ayanCooper} alt="Ayan Cooper" />
+        <h3>Ayan Cooper</h3>
+        <p>Frontend Developer</p>
+      </div>
+    </div>
+
  </div> 
 
 
