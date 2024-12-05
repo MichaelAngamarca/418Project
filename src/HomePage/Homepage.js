@@ -69,6 +69,14 @@ const Homepage = () => {
           </div>
         </div>
       </nav>
+
+      <section className="hero">
+        <h1 className="hero-title">Music Recommender</h1>
+        <p className="hero-subtitle">
+          Discover. Create. Share. The ultimate playlist experience.
+        </p>
+      </section>
+
     </>
   );
 };

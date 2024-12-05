@@ -214,3 +214,18 @@ body {
 .fa-heart {
   color: #f57256;
 }
+
+.hero {
+  padding: 50px 20px;
+  background: linear-gradient(135deg, #89c0d2, #121212);
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
