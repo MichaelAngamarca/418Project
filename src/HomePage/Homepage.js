@@ -57,6 +57,9 @@ const Homepage = () => {
             >
               Generate A Playlist
             </a>
+            <a className="nav-item nav-link text-white" href="/uploadsong">
+              Upload A Song
+            </a>
             <a className="nav-item nav-link text-white" href="/login">
               Login
             </a>

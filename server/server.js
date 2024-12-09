@@ -109,3 +109,27 @@ app.post("/userlogin", async (req, res) => {
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
+
+//************************** */
+
+app.post("/uploadSong", async (req, res) => {
+  const { songLink } = req.body;
+  console.log(`Received song upload: Link = ${songLink}`);
+
+  try {
+    const db = client.db("MainDB");
+    const collection = db.collection("songs");
+
+    const existingSong = await collection.findOne({ songLink });
+    if (existingSong) {
+      return res.status(400).json({ message: "Song already exists in the database." });
+    }
+
+    await collection.insertOne({ songLink });
+    res.status(201).json({ message: "Song uploaded successfully." });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+});
+

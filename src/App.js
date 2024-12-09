@@ -6,6 +6,7 @@ import GeneratePlaylist from "./GeneratePlaylist/GeneratePlaylist";
 import About from "./About/About";
 import Signup from "./Signup/Signup";
 import Spotifylogin from "./SpotifyLogin/Spotifylogin";
+import UploadSong from "./UploadSong/UploadSong";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/howtouse" element={<About />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/spotifylogin" element={<Spotifylogin />} />
+        <Route path="/uploadsong" element={<UploadSong />} />
       </Routes>
     </BrowserRouter>
   );
