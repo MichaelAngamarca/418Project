@@ -236,85 +236,121 @@ const GeneratePlaylist = () => {
   };
 
   return (
-    <div className="container mt-5 text-center">
-      <div className="muzieknootjes">
-        <div className="noot-1">&#9835; &#9833;</div>
-        <div className="noot-2">&#9833;</div>
-        <div className="noot-3">&#9839; &#9834;</div>
-        <div className="noot-4">&#9834;</div>
-      </div>
-      <h1>Generate Playlist</h1>
-      <div className="d-flex justify-content-center mb-3">
-        <input
-          type="text"
-          className="form-control w-50 me-2"
-          placeholder="Enter Spotify Playlist Link"
-          value={playlistLink}
-          onChange={(e) => setPlaylistLink(e.target.value)}
-        />
-        <button className="btn btn-dark" onClick={handleLogin}>
-          Login With Spotify
-        </button>
-      </div>
-      <input
-        type="text"
-        className="form-control w-50 mx-auto mb-3"
-        placeholder="Enter Genres (comma-separated)"
-        value={genreInput}
-        onChange={(e) => setGenreInput(e.target.value)}
-      />
-      <div className="d-flex justify-content-center gap-3 mb-3">
-        <button className="btn btn-dark" onClick={createNewPlaylistFromLink}>
-          Generate Playlist from Link
-        </button>
-        <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
-          Generate Playlist from Genres
-        </button>
+    <><nav className="navbar navbar-expand-lg navbar-light bg-dark">
+      <a className="navbar-brand text-white" href="/public">
+        Spotify Playlist Maker
+      </a>
+      <button
+        className="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav">
+          <a className="nav-item nav-link text-white active" href="/">
+            Home
+          </a>
+          <a
+            className="nav-item nav-link text-white"
+            href="/generateplaylist"
+          >
+            Generate A Playlist
+          </a>
+          <a className="nav-item nav-link text-white" href="/login">
+            Login
+          </a>
+          <a className="nav-item nav-link text-white" href="/signup">
+            Signup
+          </a>
+          <a className="nav-item nav-link text-white" href="/howtouse">
+            How To Use
+          </a>
+
+        </div>
       </div>
 
-      {playlistDetails && (
-        <div className="card mt-4 mx-auto w-100" style={{ maxWidth: "500px" }}>
-          <img
-            src={playlistDetails.image}
-            className="card-img-top"
-            alt="Playlist Art"
-          />
-          <div className="card-body">
-            <h5 className="card-title">{playlistDetails.name}</h5>
-            <a
-              href={playlistDetails.link}
-              className="btn btn-dark"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open Playlist on Spotify
-            </a>
-            <div className="d-flex justify-content-center mt-3">
-              <button
+    </nav><div className="container mt-5 text-center">
+        <div className="muzieknootjes">
+          <div className="noot-1">&#9835; &#9833;</div>
+          <div className="noot-2">&#9833;</div>
+          <div className="noot-3">&#9839; &#9834;</div>
+          <div className="noot-4">&#9834;</div>
+        </div>
+        <h1>Generate Playlist</h1>
+        <div className="d-flex justify-content-center mb-3">
+          <input
+            type="text"
+            className="form-control w-50 me-2"
+            placeholder="Enter Spotify Playlist Link"
+            value={playlistLink}
+            onChange={(e) => setPlaylistLink(e.target.value)} />
+          <button className="btn btn-dark" onClick={handleLogin}>
+            Login With Spotify
+          </button>
+        </div>
+        <input
+          type="text"
+          className="form-control w-50 mx-auto mb-3"
+          placeholder="Enter Genres (comma-separated)"
+          value={genreInput}
+          onChange={(e) => setGenreInput(e.target.value)} />
+        <div className="d-flex justify-content-center gap-3 mb-3">
+          <button className="btn btn-dark" onClick={createNewPlaylistFromLink}>
+            Generate Playlist from Link
+          </button>
+          <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
+            Generate Playlist from Genres
+          </button>
+        </div>
+
+        {playlistDetails && (
+          <div className="card mt-4 mx-auto w-100" style={{ maxWidth: "500px" }}>
+            <img
+              src={playlistDetails.image}
+              className="card-img-top"
+              alt="Playlist Art" />
+            <div className="card-body">
+              <h5 className="card-title">{playlistDetails.name}</h5>
+              <a
+                href={playlistDetails.link}
                 className="btn btn-dark"
-                onClick={regeneratePlaylist}
-                disabled={!playlistDetails} // Disabled until playlist is generated
-                style={{ display: playlistDetails ? "block" : "none" }}
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                Regenerate Playlist
-              </button>
+                Open Playlist on Spotify
+              </a>
+              <div className="d-flex justify-content-center mt-3">
+                <button
+                  className="btn btn-dark"
+                  onClick={regeneratePlaylist}
+                  disabled={!playlistDetails} // Disabled until playlist is generated
+                  style={{ display: playlistDetails ? "block" : "none" }}
+                >
+                  Regenerate Playlist
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-      {filteredTracks.length > 0 && (
-        <div className="mt-4">
-          <h2>Generated Tracks</h2>
-          <ul className="list-group">
-            {filteredTracks.map((track) => (
-              <li key={track.uri} className="list-group-item">
-                {track.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+        )}
+        {filteredTracks.length > 0 && (
+          <div className="mt-4">
+            <h2>Generated Tracks</h2>
+            <ul className="list-group">
+              {filteredTracks.map((track) => (
+                <li key={track.uri} className="list-group-item">
+                  {track.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </div></>
   );
 };
 export default GeneratePlaylist;
