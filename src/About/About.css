@@ -41,3 +41,21 @@
     color: #666666;
     line-height: 1.5;
 }
+
+.card-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.card-link:hover {
+    color: #0056b3;
+}
