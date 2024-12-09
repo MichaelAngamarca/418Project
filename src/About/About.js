@@ -5,7 +5,7 @@ import placeHolder from '../assets/images/placeHolder418.jpg';
 
 const About = () => {
   return (
-    <div>
+    <div className="about-container">
      <nav className="navbar navbar-expand-lg navbar-light bg-dark">
        <a className="navbar-brand text-white" href="/public">
          Spotify Playlist Maker
@@ -52,7 +52,8 @@ const About = () => {
        Our Muisc Recommender is a web application designed to recommend music to listensers based on
        their mood. Whether you're a listener or a musician looking to share your work, this platform has something for you.
      </p>
-     <div className="mt-4">
+
+     <div className="section">
        <h2>Features</h2>
        <ul>
          <li>Generate personalized playlists based on your mood.</li>
@@ -60,14 +61,27 @@ const About = () => {
          <li>Effortlessly manage and edit your playlists.</li>
        </ul>
      </div>
-     <div className="mt-4">
+
+     <div className="section">
        <h2>Our Mission</h2>
        <p>
          Our goal is to create an intuitive and fun music experience for everyone. We aim to
          empower users and musicians to conncet throught the joy of music.
        </p>
      </div>
-     <div className="mt-4">
+
+     <div className="section">
+      <h2>Tech Stack</h2>
+      <ul>
+        <li>React.js for the frontend</li>
+        <li>Node.js and Express.js for the backend</li>
+        <li>MongoDB for database management</li>
+        <li>Bootstrap for stylizing content</li>
+        <li>Spotify API for playlist generation</li>
+      </ul>
+     </div>
+
+     <div className="section">
        <h2>Acknowledgements</h2>
        <p>
          This project is a collaborative effort by a passionate team of developers. We hope
