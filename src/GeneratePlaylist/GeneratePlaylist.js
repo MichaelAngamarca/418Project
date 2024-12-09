@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./GeneratePlaylist.css";
 
 const CLIENT_ID = "7e8604cda2934a38874eeb19205ec10e";
 const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
@@ -121,6 +122,19 @@ const GeneratePlaylist = () => {
     }
   };
 
+  const regeneratePlaylist = () => {
+    // Clear current state
+    setFilteredTracks([]);
+    setPlaylistDetails(null);
+
+    // Regenerate based on last action
+    if (playlistLink) {
+      createNewPlaylistFromLink();
+    } else if (genreInput) {
+      createPlaylistFromGenres();
+    }
+  };
+
   const createPlaylistFromGenres = async () => {
     const accessToken = localStorage.getItem("accessToken");
 
@@ -215,12 +229,20 @@ const GeneratePlaylist = () => {
         image: updatedPlaylistData.images[0]?.url,
         link: updatedPlaylistData.external_urls.spotify,
       });
+
+      window.open(updatedPlaylistData.external_urls.spotify, "_blank");
     }, 2000);
     alert("Playlist created successfully!");
   };
 
   return (
     <div className="container mt-5 text-center">
+      <div className="muzieknootjes">
+        <div className="noot-1">&#9835; &#9833;</div>
+        <div className="noot-2">&#9833;</div>
+        <div className="noot-3">&#9839; &#9834;</div>
+        <div className="noot-4">&#9834;</div>
+      </div>
       <h1>Generate Playlist</h1>
       <div className="d-flex justify-content-center mb-3">
         <input
@@ -230,7 +252,7 @@ const GeneratePlaylist = () => {
           value={playlistLink}
           onChange={(e) => setPlaylistLink(e.target.value)}
         />
-        <button className="btn btn-primary" onClick={handleLogin}>
+        <button className="btn btn-dark" onClick={handleLogin}>
           Login With Spotify
         </button>
       </div>
@@ -242,16 +264,16 @@ const GeneratePlaylist = () => {
         onChange={(e) => setGenreInput(e.target.value)}
       />
       <div className="d-flex justify-content-center gap-3 mb-3">
-        <button className="btn btn-success" onClick={createNewPlaylistFromLink}>
+        <button className="btn btn-dark" onClick={createNewPlaylistFromLink}>
           Generate Playlist from Link
         </button>
-        <button className="btn btn-success" onClick={createPlaylistFromGenres}>
+        <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
           Generate Playlist from Genres
         </button>
       </div>
 
       {playlistDetails && (
-        <div className="card mt-4 mx-auto" style={{ maxWidth: "400px" }}>
+        <div className="card mt-4 mx-auto w-100" style={{ maxWidth: "500px" }}>
           <img
             src={playlistDetails.image}
             className="card-img-top"
@@ -261,12 +283,22 @@ const GeneratePlaylist = () => {
             <h5 className="card-title">{playlistDetails.name}</h5>
             <a
               href={playlistDetails.link}
-              className="btn btn-primary"
+              className="btn btn-dark"
               target="_blank"
               rel="noopener noreferrer"
             >
               Open Playlist on Spotify
             </a>
+            <div className="d-flex justify-content-center mt-3">
+              <button
+                className="btn btn-dark"
+                onClick={regeneratePlaylist}
+                disabled={!playlistDetails} // Disabled until playlist is generated
+                style={{ display: playlistDetails ? "block" : "none" }}
+              >
+                Regenerate Playlist
+              </button>
+            </div>
           </div>
         </div>
       )}
@@ -285,5 +317,4 @@ const GeneratePlaylist = () => {
     </div>
   );
 };
-
 export default GeneratePlaylist;
