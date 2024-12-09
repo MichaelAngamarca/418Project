@@ -1,6 +1,7 @@
 import React from 'react'
 import "./About.css";
 import ayanCooper from '../assets/images/ayan_cooper.JPG';
+import renaldMendez from '../assets/images/renald_mendez.JPG';
 import placeHolder from '../assets/images/placeHolder418.jpg';
 
 const About = () => {
@@ -114,7 +115,7 @@ const About = () => {
       </div>
 
       <div className="card">
-        <img src={placeHolder} alt="Renald Mendez" />
+        <img src={renaldMendez} alt="Renald Mendez" />
         <h3>Renald Mendez</h3>
         <p>Frontend Developer</p>
         <div className="card-links">
