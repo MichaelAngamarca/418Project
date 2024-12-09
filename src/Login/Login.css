@@ -1,0 +1,17 @@
+
+.signOption{
+     float:right; 
+    height: 1000px;
+    width:35%;
+    margin:auto;
+    background-color: lightblue;
+    
+}
+.contain{
+        float: left;
+        width:65%;
+       
+}
+.center {
+    margin-top: 255px;
+  }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
-
+import "./Login.css";
 const Login = () => {
   const [loginValues, setLoginValues] = useState({
     userID: "",
@@ -77,10 +77,13 @@ const Login = () => {
             <a className="nav-item nav-link text-white" href="/howtouse">
               How To Use
             </a>
+           
           </div>
         </div>
+       
       </nav>
-      <div className="container d-flex justify-content-center align-items-center vh-100">
+      
+      <div className="contain  d-flex justify-content-center align-items-center vh-100">
         <form
           className="p-4 bg-light rounded shadow"
           style={{ maxWidth: "400px", width: "100%" }}
@@ -117,19 +120,30 @@ const Login = () => {
               required
             />
           </div>
-          <div className="d-flex justify-content-between">
+         
+          <div className=" d-flex justify-content-center align-items-center">
             <button type="submit" className="btn btn-primary">
               Login
             </button>
-            <button
+            </div>
+            
+          
+        </form>
+      </div>
+      <div className = " signOption  justify-content-center align-items-center">
+     
+        <div className = "center"> <h3 className="text-center mb-4">Are You New Here?</h3>
+        <h4 className="text-center mb-4">If so, Sign Up Instead</h4>
+        </div>
+        <div className=" d-flex justify-content-center align-items-center">
+       <button
               type="button"
               className="btn btn-secondary"
               onClick={handleSignup}
             >
-              Sign Up
+             Sign Up
             </button>
-          </div>
-        </form>
+            </div>
       </div>
     </>
   );

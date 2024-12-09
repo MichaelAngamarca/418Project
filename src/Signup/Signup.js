@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import "./Signup.css";
 const Signup = () => {
   const navigate = useNavigate();
   const [signupValues, setSignupValues] = useState({
@@ -65,7 +65,7 @@ const Signup = () => {
           </a>
         </div>
       </div>
-    </nav><div className="container d-flex justify-content-center align-items-center vh-100">
+    </nav><div className="contain d-flex justify-content-center align-items-center vh-100">
         <form
           className="p-4 bg-light rounded shadow"
           style={{ maxWidth: "400px", width: "100%" }}
@@ -100,19 +100,28 @@ const Signup = () => {
               onChange={handleInputChange}
               required />
           </div>
-          <div className="d-flex justify-content-between">
+          <div className=" d-flex justify-content-center align-items-center">
           <button type="submit" className="btn btn-primary">
             Submit
           </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={handleLogin}
-          >
-            Login
-          </button>
+         
           </div>
         </form>
+        </div>
+      <div className = " loginOption  justify-content-center align-items-center">
+     
+        <div className = "center"> <h3 className="text-center mb-4">Are You New Here?</h3>
+        <h4 className="text-center mb-4">If not, Login Instead</h4>
+        </div>
+        <div className=" d-flex justify-content-center align-items-center">
+       <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={handleLogin}
+            >
+             Login
+            </button>
+            </div>
       </div></>
   );
 };
