@@ -81,30 +81,110 @@ const About = () => {
         <img src={ayanCooper} alt="Ayan Cooper" />
         <h3>Ayan Cooper</h3>
         <p>Frontend Developer</p>
+        <div className="card-links">
+          <a
+            href="https://www.linkedin.com/in/ayancooper/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:adcooper@albany.edu"
+            className="card-link"
+          >
+            Email
+          </a>
+        </div>
       </div>
 
       <div className="card">
         <img src={placeHolder} alt="Renald Mendez" />
         <h3>Renald Mendez</h3>
         <p>Frontend Developer</p>
+        <div className="card-links">
+          <a
+            href="https://www.linkedin.com/in/renald-mendez-074a33272/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:rmmendez@albany.edu"
+            className="card-link"
+          >
+            Email
+          </a>
+        </div>
       </div>
 
       <div className="card">
         <img src={placeHolder} alt="Samuel Zhao" />
         <h3>Samuel Zhao</h3>
         <p>Frontend Developer</p>
+        <div className="card-links">
+          <a
+            href="https://www.linkedin.com/in/samzhao2893/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:szhao3@albany.edu"
+            className="card-link"
+          >
+            Email
+          </a>
+        </div>
       </div>
 
       <div className="card">
         <img src={placeHolder} alt="Eli Pardo" />
         <h3>Eli Pardo</h3>
         <p>Frontend Developer</p>
+        <div className="card-links">
+          <a
+            href="https://www.linkedin.com/in/eli-pardo-994951236/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:empardo@albany.edu"
+            className="card-link"
+          >
+            Email
+          </a>
+        </div>
       </div>
 
       <div className="card">
         <img src={placeHolder} alt="Miguel Angamarca" />
         <h3>Miguel Angamarca</h3>
         <p>Backend Developer</p>
+        <div className="card-links">
+          <a
+            href="https://www.linkedin.com/in/michael-angamarca-9721bb272/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="card-link"
+          >
+            LinkedIn
+          </a>
+          <a
+            href="mailto:mangamarca@albany.edu"
+            className="card-link"
+          >
+            Email
+          </a>
+        </div>
       </div>
     </div>
 
