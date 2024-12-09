@@ -3,6 +3,7 @@ import "./About.css";
 import ayanCooper from "../assets/images/ayan_cooper.JPG";
 import renaldMendez from "../assets/images/renald_mendez.JPG";
 import placeHolder from "../assets/images/placeHolder418.jpg";
+import samuelZhao from "../assets/images/samuel_zhao.jpg";
 import michaelAngamarca from "../assets/images/1697733301372.jpg";
 const About = () => {
   return (
@@ -134,7 +135,7 @@ const About = () => {
         </div>
 
         <div className="card">
-          <img src={placeHolder} alt="Samuel Zhao" />
+          <img src={samuelZhao} alt="Samuel Zhao" />
           <h3>Samuel Zhao</h3>
           <p>Frontend Developer</p>
           <div className="card-links">
