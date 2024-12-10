@@ -351,20 +351,31 @@ const GeneratePlaylist = () => {
           <button className="btn btn-LIGHT" onClick={handleLogin}>
             Login With Spotify
           </button>
-          <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
+          <button
+            className="btn btn-dark"
+            color="white"
+            onClick={createPlaylistFromGenres}
+          >
             Generate Playlist from Genres
           </button>
         </div>
 
         {playlistDetails && (
           <div
-            className="card mt-4 mx-auto w-100"
-            style={{ maxWidth: "275px" }}
+            className="card mt-5 mx-auto"
+            style={{
+              width: "100%",
+              maxWidth: "350px", // Set a max width for the card
+            }}
           >
             <img
               src={playlistDetails.image}
               className="card-img-top"
               alt="Playlist Art"
+              style={{
+                width: "100%", // Ensure the image scales properly
+                height: "auto",
+              }}
             />
             <div className="card-body">
               <h5 className="card-title">{playlistDetails.name}</h5>
@@ -380,7 +391,7 @@ const GeneratePlaylist = () => {
                 <button
                   className="btn btn-dark"
                   onClick={regeneratePlaylist}
-                  disabled={!playlistDetails} // Disabled until playlist is generated
+                  disabled={!playlistDetails}
                   style={{ display: playlistDetails ? "block" : "none" }}
                 >
                   Regenerate Playlist
