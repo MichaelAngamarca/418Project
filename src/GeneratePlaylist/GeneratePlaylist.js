@@ -281,6 +281,9 @@ const GeneratePlaylist = () => {
             >
               Generate A Playlist
             </a>
+            <a className="nav-item nav-link text-white" href="/uploadsong">
+              Upload A Song
+            </a>
             <a className="nav-item nav-link text-white" href="/login">
               Login
             </a>
@@ -327,7 +330,7 @@ const GeneratePlaylist = () => {
           <div className="noot-3">&#9839; &#9834;</div>
           <div className="noot-4">&#9834;</div>
         </div>
-        <h1>Generate Playlist</h1>
+        <h1 className="text-white">Generate Playlist</h1>
         <div className="d-flex justify-content-center mb-3">
           <input
             type="text"
@@ -348,7 +351,7 @@ const GeneratePlaylist = () => {
           <button className="btn btn-dark" onClick={createNewPlaylistFromLink}>
             Generate Playlist from Link
           </button>
-          <button className="btn btn-LIGHT" onClick={handleLogin}>
+          <button className="btn btn-LIGHT text-white" onClick={handleLogin}>
             Login With Spotify
           </button>
           <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
