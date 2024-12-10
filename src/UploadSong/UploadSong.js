@@ -69,11 +69,14 @@ const UploadSong = () => {
             <a className="nav-item nav-link text-white" href="/signup">
               Signup
             </a>
+            <a className="nav-item nav-link text-white" href="/howtouse">
+              How To Use
+            </a>
           </div>
         </div>
       </nav>
       <div className="container mt-5 text-center">
-        <h1>Upload Song</h1>
+        <h1 className="text-white">Upload Song</h1>
         <div className="d-flex justify-content-center mb-3">
           <input
             type="text"
