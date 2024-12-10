@@ -18,6 +18,7 @@ const GeneratePlaylist = () => {
   const [genreInput, setGenreInput] = useState("");
   const [filteredTracks, setFilteredTracks] = useState([]);
   const [playlistDetails, setPlaylistDetails] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
     if (window.location.hash) {
@@ -31,8 +32,25 @@ const GeneratePlaylist = () => {
         }, {});
 
       localStorage.setItem("accessToken", access_token);
+      fetchUserProfile(access_token);
     }
   }, []);
+
+  const fetchUserProfile = async (accessToken) => {
+    try {
+      const response = await fetch("https://api.spotify.com/v1/me", {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      const data = await response.json();
+      setUserProfile({
+        name: data.display_name,
+        image: data.images[0]?.url,
+        profileUrl: data.external_urls.spotify,
+      });
+    } catch (error) {
+      console.error("Error fetching user profile:", error);
+    }
+  };
 
   const handleLogin = () => {
     window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
@@ -236,46 +254,73 @@ const GeneratePlaylist = () => {
   };
 
   return (
-    <><nav className="navbar navbar-expand-lg navbar-light bg-dark">
-      <a className="navbar-brand text-white" href="/public">
-        Spotify Playlist Maker
-      </a>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div className="navbar-nav">
-          <a className="nav-item nav-link text-white active" href="/">
-            Home
-          </a>
-          <a
-            className="nav-item nav-link text-white"
-            href="/generateplaylist"
-          >
-            Generate A Playlist
-          </a>
-          <a className="nav-item nav-link text-white" href="/login">
-            Login
-          </a>
-          <a className="nav-item nav-link text-white" href="/signup">
-            Signup
-          </a>
-          <a className="nav-item nav-link text-white" href="/howtouse">
-            How To Use
-          </a>
-
+    <>
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark">
+        <a className="navbar-brand text-white" href="/public">
+          Spotify Playlist Maker
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+            <a className="nav-item nav-link text-white active" href="/">
+              Home
+            </a>
+            <a
+              className="nav-item nav-link text-white"
+              href="/generateplaylist"
+            >
+              Generate A Playlist
+            </a>
+            <a className="nav-item nav-link text-white" href="/login">
+              Login
+            </a>
+            <a className="nav-item nav-link text-white" href="/signup">
+              Signup
+            </a>
+            <a className="nav-item nav-link text-white" href="/howtouse">
+              How To Use
+            </a>
+          </div>
         </div>
-      </div>
-
-    </nav><div className="container mt-5 text-center">
+      </nav>
+      <div className="container mt-5 text-center">
+        {userProfile && (
+          <div
+            className="profile-icon"
+            style={{
+              position: "absolute",
+              top: "10px",
+              right: "10px",
+            }}
+          >
+            <a
+              href={userProfile.profileUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                src={userProfile.image || "https://via.placeholder.com/50"}
+                alt="User Profile"
+                style={{
+                  borderRadius: "50%",
+                  width: "40px",
+                  height: "40px",
+                  cursor: "pointer",
+                }}
+              />
+            </a>
+          </div>
+        )}
         <div className="muzieknootjes">
           <div className="noot-1">&#9835; &#9833;</div>
           <div className="noot-2">&#9833;</div>
@@ -289,20 +334,22 @@ const GeneratePlaylist = () => {
             className="form-control w-50 me-2"
             placeholder="Enter Spotify Playlist Link"
             value={playlistLink}
-            onChange={(e) => setPlaylistLink(e.target.value)} />
-          <button className="btn btn-dark" onClick={handleLogin}>
-            Login With Spotify
-          </button>
+            onChange={(e) => setPlaylistLink(e.target.value)}
+          />
         </div>
         <input
           type="text"
           className="form-control w-50 mx-auto mb-3"
           placeholder="Enter Genres (comma-separated)"
           value={genreInput}
-          onChange={(e) => setGenreInput(e.target.value)} />
+          onChange={(e) => setGenreInput(e.target.value)}
+        />
         <div className="d-flex justify-content-center gap-3 mb-3">
           <button className="btn btn-dark" onClick={createNewPlaylistFromLink}>
             Generate Playlist from Link
+          </button>
+          <button className="btn btn-LIGHT" onClick={handleLogin}>
+            Login With Spotify
           </button>
           <button className="btn btn-dark" onClick={createPlaylistFromGenres}>
             Generate Playlist from Genres
@@ -310,11 +357,15 @@ const GeneratePlaylist = () => {
         </div>
 
         {playlistDetails && (
-          <div className="card mt-4 mx-auto w-100" style={{ maxWidth: "500px" }}>
+          <div
+            className="card mt-4 mx-auto w-100"
+            style={{ maxWidth: "275px" }}
+          >
             <img
               src={playlistDetails.image}
               className="card-img-top"
-              alt="Playlist Art" />
+              alt="Playlist Art"
+            />
             <div className="card-body">
               <h5 className="card-title">{playlistDetails.name}</h5>
               <a
@@ -350,7 +401,8 @@ const GeneratePlaylist = () => {
             </ul>
           </div>
         )}
-      </div></>
+      </div>
+    </>
   );
 };
 export default GeneratePlaylist;
