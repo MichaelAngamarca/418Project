@@ -2,12 +2,24 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import "./Login.css";
+const CLIENT_ID = "7e8604cda2934a38874eeb19205ec10e";
+const SPOTIFY_AUTHORIZE_ENDPOINT = "https://accounts.spotify.com/authorize";
+const REDIRECT_URI = "http://localhost:3000/generateplaylist";
+const SCOPES = [
+  "playlist-modify-public",
+  "playlist-modify-private",
+  "playlist-read-private",
+  "playlist-read-collaborative",
+];
+const SCOPES_URL_PARAM = SCOPES.join("%20");
 const Login = () => {
   const [loginValues, setLoginValues] = useState({
     userID: "",
     password: "",
   });
-
+  const handleSpotifyLogin = () => {
+    window.location = `${SPOTIFY_AUTHORIZE_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&scope=${SCOPES_URL_PARAM}&response_type=token&show_dialog=true`;
+  };
   const navigate = useNavigate();
 
   // Function to handle login
@@ -20,6 +32,7 @@ const Login = () => {
       })
       .then((res) => {
         alert("Login Successful!");
+        handleSpotifyLogin();
       })
       .catch((err) => {
         alert(err.response.data.message || "Error In Login");
