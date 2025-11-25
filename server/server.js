@@ -27,7 +27,7 @@ app.use(
 );
 app.use(bodyParser.json());
 const uri =
-  "mongodb+srv://michaelangamarca558:msab1205@cluster0.svhlz.mongodb.net/";
+  "mongodb+srv://michaelangamarca558:ExO2757ZyIox49cA@cluster0.0qc4ag4.mongodb.net";
 const client = new MongoClient(uri);
 
 const JWT_SECRET = "your-jwt-secret";
